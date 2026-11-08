@@ -183,12 +183,6 @@ The website complements this repository by providing a visual
 demonstration of our implementation and experimental findings.
 
 ---
-
-This project is accompanied by an interactive research website
-that demonstrates the implementation and experimental findings.
-
-**Live Demo:** https://brisk-piano-t9ji2v4.tmp.now/
-
 ## Key Results
 
 - **Reconstruction Error**: Exact mathematical reconstruction (`max |X - X̂| = 0.0000`).
