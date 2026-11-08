@@ -161,6 +161,34 @@ X(t) = S₁(t) + S₂(t) + ... + Sₙ(t) + T(t) + R(t)
 
 ---
 
+## 🌐 Interactive Project Website
+
+We have developed an interactive web-based platform to demonstrate
+the MSTL algorithm, its decomposition process, experimental results,
+and research extensions.
+
+**Visit the live website:**
+
+🔗 https://brisk-piano-t9ji2v4.tmp.now/
+
+The website provides an interactive way to explore:
+- Time-series decomposition into trend, daily seasonality,
+  weekly seasonality, and remainder.
+- Interactive visualization of the Victoria electricity-demand dataset.
+- Benchmark comparisons and experimental results.
+- Synthetic data experiments and evaluation.
+- Research extensions, robustness analysis, and scalability.
+
+The website complements this repository by providing a visual
+demonstration of our implementation and experimental findings.
+
+---
+
+This project is accompanied by an interactive research website
+that demonstrates the implementation and experimental findings.
+
+**Live Demo:** https://brisk-piano-t9ji2v4.tmp.now/
+
 ## Key Results
 
 - **Reconstruction Error**: Exact mathematical reconstruction (`max |X - X̂| = 0.0000`).
