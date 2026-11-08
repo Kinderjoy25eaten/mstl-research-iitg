@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MSTL Research: Multi-Seasonal Trend Decomposition — IIT Guwahati</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Plotly.js for Interactive Charts -->
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  
+  <!-- KaTeX for Math Equations -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <span class="brand-badge"><i class="fa-solid fa-chart-line"></i> MSTL Research</span>
+        <span class="brand-school">IIT Guwahati &bull; Mehta Family School of Data Science & AI</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#explorer">Live Explorer</a>
+        <a href="#benchmarks">Benchmarks</a>
+        <a href="#synthetic">Synthetic Benchmark</a>
+        <a href="#extensions">Extensions</a>
+        <a href="#downloads" class="btn-nav"><i class="fa-solid fa-file-pdf"></i> Download Paper</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="overview">
+    <div class="hero-content">
+      <div class="badge-row">
+        <span class="pill pill-primary"><i class="fa-solid fa-university"></i> IIT Guwahati</span>
+        <span class="pill pill-info">Mehta Family School of Data Science & AI</span>
+        <span class="pill pill-success"><i class="fa-solid fa-check-double"></i> Exact Reconstruction (Error: 0.00)</span>
+        <span class="pill pill-dark">B.Tech DSAI Project</span>
+      </div>
+      
+      <h1 class="hero-title">MSTL: A Seasonal-Trend Decomposition Algorithm for Multiple Seasonal Patterns</h1>
+      <p class="hero-subtitle">Implementation, Empirical Reproduction, and Methodological Extensions</p>
+      
+      <!-- Authors Card -->
+      <div class="authors-card">
+        <div class="authors-grid">
+          <div class="author-item">
+            <div class="author-avatar"><i class="fa-solid fa-user-graduate"></i></div>
+            <div class="author-info">
+              <span class="author-name">Rup Narayan Jha</span>
+              <span class="author-roll">Roll No: 240150032</span>
+            </div>
+          </div>
+          <div class="author-item">
+            <div class="author-avatar"><i class="fa-solid fa-user-graduate"></i></div>
+            <div class="author-info">
+              <span class="author-name">Jaypal Malviya</span>
+              <span class="author-roll">Roll No: 240150013</span>
+            </div>
+          </div>
+          <div class="author-item">
+            <div class="author-avatar"><i class="fa-solid fa-user-graduate"></i></div>
+            <div class="author-info">
+              <span class="author-name">Anuj Kumar</span>
+              <span class="author-roll">Roll No: 240150003</span>
+            </div>
+          </div>
+          <div class="author-item">
+            <div class="author-avatar"><i class="fa-solid fa-user-graduate"></i></div>
+            <div class="author-info">
+              <span class="author-name">Ravi Kiran</span>
+              <span class="author-roll">Roll No: 240150029</span>
+            </div>
+          </div>
+        </div>
+        <p class="school-footer">
+          <strong>Department:</strong> Mehta Family School of Data Science and Artificial Intelligence, Indian Institute of Technology Guwahati (IIT Guwahati), Assam, India
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="hero-actions">
+        <a href="docs/final_report.pdf" download class="btn btn-primary">
+          <i class="fa-solid fa-file-pdf"></i> Download Research Paper (PDF)
+        </a>
+        <a href="docs/Supplementary_Material.pdf" download class="btn btn-secondary">
+          <i class="fa-solid fa-book"></i> Supplementary Material (PDF)
+        </a>
+        <a href="#explorer" class="btn btn-outline">
+          <i class="fa-solid fa-chart-simple"></i> Launch Interactive Explorer
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Metrics Banner -->
+  <section class="metrics-banner">
+    <div class="metric-item">
+      <span class="metric-value">0.230 s</span>
+      <span class="metric-label">Custom MSTL Runtime (3,601 obs)</span>
+      <span class="metric-sub">4.5&times; faster than Statsmodels</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-value">0.0000</span>
+      <span class="metric-label">Max Reconstruction Error</span>
+      <span class="metric-sub">Exact Additive Math Guarantee</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-value">1.854</span>
+      <span class="metric-label">Synthetic Trend RMSE</span>
+      <span class="metric-sub">1.24% relative error (range 150)</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-value">3,601</span>
+      <span class="metric-label">Hourly Observations</span>
+      <span class="metric-sub">Exact paper reproduction (149 days)</span>
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <main class="container">
+
+    <!-- Abstract Box -->
+    <section class="card abstract-card">
+      <h2><i class="fa-solid fa-quote-left"></i> Executive Abstract</h2>
+      <p>
+        High-frequency time series frequently exhibit multiple simultaneous seasonal cycles, such as diurnal (24h) and circaseptan (168h) periodicities. Classical Seasonal-Trend decomposition using LOESS (STL) is restricted to a single seasonal period, leaving unmodelled periodic variations in the remainder component. In this research project, we study, implement, and extend the <strong>Multiple Seasonal-Trend decomposition using LOESS (MSTL)</strong> algorithm proposed by <em>Bandara, Hyndman, and Bergmeir (2021)</em>.
+      </p>
+      <p>
+        We contribute: <strong>(1)</strong> a faithful Python implementation of Algorithm 1, verified to achieve exact mathematical reconstruction ($\max |X - \hat{X}| = 0.00$); <strong>(2)</strong> an exact reproduction of the Victoria electricity-demand experiment using 3,601 hourly observations with daily ($m_1=24$) and weekly ($m_2=168$) seasonal cycles; <strong>(3)</strong> an objective component-wise accuracy benchmark on synthetic data with known ground-truth components; and <strong>(4)</strong> four original research extensions: seasonal window sensitivity, multi-seasonality ablation, outlier and missing data robustness, and computational scalability profiling.
+      </p>
+    </section>
+
+    <!-- Interactive Live Decomposition Explorer -->
+    <section class="card" id="explorer">
+      <div class="card-header-row">
+        <div>
+          <h2><i class="fa-solid fa-chart-line"></i> Interactive Live Decomposition Explorer</h2>
+          <p class="section-desc">Interact with the real decomposition outputs. Toggle components, zoom in, and hover for hourly demand values.</p>
+        </div>
+        <div class="controls-group">
+          <label><strong>Dataset:</strong></label>
+          <select id="datasetSelect" class="select-dropdown">
+            <option value="vic">Victoria Electricity Demand (3,601 obs)</option>
+            <option value="synth">Synthetic Series (Known Ground Truth)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Component Toggles -->
+      <div class="toggle-buttons-bar">
+        <button class="toggle-btn active" data-component="original"><i class="fa-solid fa-eye"></i> Original $X(t)$</button>
+        <button class="toggle-btn active" data-component="trend"><i class="fa-solid fa-wave-square"></i> Trend $T(t)$</button>
+        <button class="toggle-btn active" data-component="daily"><i class="fa-solid fa-sun"></i> Daily Seasonal $S_{24}(t)$</button>
+        <button class="toggle-btn active" data-component="weekly"><i class="fa-solid fa-calendar-week"></i> Weekly Seasonal $S_{168}(t)$</button>
+        <button class="toggle-btn active" data-component="remainder"><i class="fa-solid fa-braille"></i> Remainder $R(t)$</button>
+      </div>
+
+      <!-- Plotly Chart Container -->
+      <div id="plotlyChart" class="chart-container">
+        <div class="loading-spinner"><i class="fa-solid fa-spinner fa-spin"></i> Loading interactive time-series data...</div>
+      </div>
+
+      <div class="chart-footer-info">
+        <span><i class="fa-solid fa-circle-info"></i> <strong>Tip:</strong> Drag across the chart to zoom into specific weeks or peak demand events. Double click to reset view.</span>
+      </div>
+    </section>
+
+    <!-- Methodology & Mathematical Formulation -->
+    <section class="card" id="methodology">
+      <h2><i class="fa-solid fa-square-root-variable"></i> MSTL Algorithm & Mathematical Formulation</h2>
+      <p>MSTL models the additive decomposition of time series $X(t)$ with $K$ seasonal components:</p>
+      <div class="equation-box">
+        $$X(t) = \sum_{k=1}^K S_k(t) + T(t) + R(t), \quad t = 1, \dots, n$$
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Period Filtering</h3>
+          <p>Discards any candidate period $m_k$ where $2m_k \ge n$. A period must have at least 2 complete cycles to be identifiable.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Ascending Sorting</h3>
+          <p>Sorts periods strictly ascending: $m_1 < m_2 < \dots < m_K$. High-frequency diurnal cycles are resolved before slower circaseptan cycles.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Iterative Back-fitting</h3>
+          <p>Sequentially de-seasonalizes the series $\tilde{X}_k(t) = X(t) - \sum_{j \neq k} S_j(t)$ and fits standard STL at period $m_k$.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <h3>Exact Remainder</h3>
+          <p>Calculates remainder algebraically $R(t) = X(t) - T(t) - \sum S_k(t)$, guaranteeing zero reconstruction drift.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Empirical Benchmarks Section -->
+    <section class="card" id="benchmarks">
+      <h2><i class="fa-solid fa-stopwatch"></i> Empirical Benchmarks & Comparisons</h2>
+      <p class="section-desc">Evaluated on the Victoria Electricity Demand dataset (3,601 hourly observations, Jan 1 to May 31, 2014).</p>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Type</th>
+              <th>Seasonal Periods</th>
+              <th>Observations</th>
+              <th>Execution Time</th>
+              <th>Remainder Std</th>
+              <th>Recon. Max Error</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight-row">
+              <td><strong><i class="fa-solid fa-star text-warning"></i> Custom MSTL</strong></td>
+              <td>Non-parametric LOESS</td>
+              <td>$m = [24, 168]$</td>
+              <td>3,601</td>
+              <td><span class="badge badge-success">0.230 s</span></td>
+              <td>809.77 MWh</td>
+              <td>$0.00 \times 10^0$ (Exact)</td>
+            </tr>
+            <tr>
+              <td>Statsmodels MSTL</td>
+              <td>Non-parametric LOESS</td>
+              <td>$m = [24, 168]$</td>
+              <td>3,601</td>
+              <td>1.037 s</td>
+              <td>809.77 MWh</td>
+              <td>$< 10^{-12}$</td>
+            </tr>
+            <tr>
+              <td>Standard STL</td>
+              <td>Single-period LOESS</td>
+              <td>$m = [24]$ only</td>
+              <td>3,601</td>
+              <td>0.078 s</td>
+              <td>599.38 MWh</td>
+              <td>$< 10^{-12}$</td>
+            </tr>
+            <tr>
+              <td>TBATS</td>
+              <td>State-Space Exponential</td>
+              <td>$m = [24, 168]$</td>
+              <td>500 (truncated)</td>
+              <td><span class="badge badge-danger">28.492 s</span></td>
+              <td>1,280.40 MWh</td>
+              <td>N/A (State-space)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note"><em>Key Insight:</em> Custom MSTL achieves identical numerical decomposition to Statsmodels MSTL while executing <strong>4.5&times; faster</strong>, and is over <strong>120&times; faster</strong> than state-space TBATS.</p>
+    </section>
+
+    <!-- Synthetic Ground-Truth Evaluation -->
+    <section class="card" id="synthetic">
+      <h2><i class="fa-solid fa-bullseye"></i> Controlled Synthetic Ground-Truth Benchmark</h2>
+      <p class="section-desc">Because empirical time series lack known ground-truth components, we simulated an analytical 70-day series ($n = 1{,}680$ hours, seed=42) to objectively measure component recovery error.</p>
+
+      <div class="synthetic-grid">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>True Analytical Equation</th>
+                <th>True Range</th>
+                <th>MSTL RMSE</th>
+                <th>Relative Error</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Trend $T(t)$</strong></td>
+                <td>$500 + 0.05t + 200\sin(2\pi t / 8760)$</td>
+                <td>$[500, 650]$</td>
+                <td><span class="badge badge-success">1.8541</span></td>
+                <td><strong>1.24%</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Daily $S_{24}(t)$</strong></td>
+                <td>$300\sin(2\pi t / 24 + 1) + 100\cos(4\pi t / 24)$</td>
+                <td>$[-320, +320]$</td>
+                <td><span class="badge badge-success">6.2602</span></td>
+                <td><strong>1.96%</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Weekly $S_{168}(t)$</strong></td>
+                <td>$150\sin(2\pi t / 168) + 50\cos(4\pi t / 168 + 0.5)$</td>
+                <td>$[-165, +165]$</td>
+                <td><span class="badge badge-info">12.9723</span></td>
+                <td><strong>7.86%</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Remainder $R(t)$</strong></td>
+                <td>$\mathcal{N}(0, 30^2)$ Gaussian Noise</td>
+                <td>$\sigma = 30.0$</td>
+                <td>14.3147</td>
+                <td>---</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Four Research Extensions -->
+    <section class="card" id="extensions">
+      <h2><i class="fa-solid fa-flask-vial"></i> Four Original Research Extensions</h2>
+      <p class="section-desc">Original methodological extensions formulated and evaluated by our research team beyond the assigned paper.</p>
+
+      <div class="extensions-cards-grid">
+        <!-- Ext 1 -->
+        <div class="ext-card">
+          <div class="ext-badge">Extension 1</div>
+          <h3>Seasonal Window & Iteration Sensitivity</h3>
+          <p>Evaluated odd LOESS windows $n_s \in \{7, 11, 15, 21, 25\}$ across outer iterations $I \in \{1, 2, 3\}$. Proved that mathematical reconstruction remains exact ($< 10^{-13}$) regardless of window choice, while runtime scales strictly linearly with iterations.</p>
+          <div class="ext-stat">
+            <span>Runtime Grid:</span> <strong>0.10 s ($I=1$) &rarr; 0.31 s ($I=3$)</strong>
+          </div>
+        </div>
+
+        <!-- Ext 2 -->
+        <div class="ext-card">
+          <div class="ext-badge">Extension 2</div>
+          <h3>Multi-Seasonality Ablation Study</h3>
+          <p>Compared Daily-only ($m=24$), Weekly-only ($m=168$), and Dual ($m=[24, 168]$). Demonstrated that modeling weekly seasonality alone inflates remainder standard deviation to $861.03$ MWh, while dual MSTL correctly isolates both periodicities ($809.77$ MWh).</p>
+          <div class="ext-stat">
+            <span>Residual Std:</span> <strong>861.03 MWh &rarr; 809.77 MWh</strong>
+          </div>
+        </div>
+
+        <!-- Ext 3 -->
+        <div class="ext-card">
+          <div class="ext-badge">Extension 3</div>
+          <h3>Outlier & Missing Data Robustness</h3>
+          <p>Discovered a crucial asymmetry: linear interpolation withstands up to 10% missing data with only 0.89% trend distortion, whereas 10% artificial outlier spikes inflict 33.56% trend degradation, proving the necessity of robust outlier preprocessing.</p>
+          <div class="ext-stat">
+            <span>Missing Degradation:</span> <strong>&le; 0.89% (Highly Resilient)</strong>
+          </div>
+        </div>
+
+        <!-- Ext 4 -->
+        <div class="ext-card">
+          <div class="ext-badge">Extension 4</div>
+          <h3>Computational Scalability Profiling</h3>
+          <p>Empirically measured runtime and memory consumption across dataset lengths from 168 hours (1 week) to 3,601 hours (5 months). Proved strict linear $O(n)$ scaling ($R^2 > 0.998$) with peak memory consumption staying under 0.75 MB throughout.</p>
+          <div class="ext-stat">
+            <span>Runtime Scaling:</span> <strong>$O(n)$ Linear (3 ms &rarr; 234 ms)</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Downloads & Resources -->
+    <section class="card" id="downloads">
+      <h2><i class="fa-solid fa-download"></i> Project Publications & Deliverables</h2>
+      <p class="section-desc">Download complete research papers, supplementary documents, and Jupyter notebooks.</p>
+
+      <div class="downloads-grid">
+        <div class="download-item">
+          <div class="dl-icon"><i class="fa-solid fa-file-pdf"></i></div>
+          <div class="dl-details">
+            <h4>Final ICML Research Paper</h4>
+            <p>Official 6-page academic paper formatted in the ICML 2024 conference template.</p>
+            <span class="file-meta">PDF &bull; 6 Pages &bull; 2.8 MB</span>
+          </div>
+          <a href="docs/final_report.pdf" download class="btn btn-primary btn-sm"><i class="fa-solid fa-download"></i> Download</a>
+        </div>
+
+        <div class="download-item">
+          <div class="dl-icon"><i class="fa-solid fa-book"></i></div>
+          <div class="dl-details">
+            <h4>Supplementary Research Material</h4>
+            <p>Extended mathematical proofs, full experimental logs, parameter tables, and reproducibility guide.</p>
+            <span class="file-meta">PDF &bull; 3 Pages &bull; 0.9 MB</span>
+          </div>
+          <a href="docs/Supplementary_Material.pdf" download class="btn btn-secondary btn-sm"><i class="fa-solid fa-download"></i> Download</a>
+        </div>
+
+        <div class="download-item">
+          <div class="dl-icon"><i class="fa-solid fa-code"></i></div>
+          <div class="dl-details">
+            <h4>Complete Python Source Code</h4>
+            <p>Modular implementation of MSTLCustom, benchmarks, experiments, and visualization scripts.</p>
+            <span class="file-meta">Python 3.14 &bull; Modular src/</span>
+          </div>
+          <a href="#overview" class="btn btn-outline btn-sm"><i class="fa-solid fa-folder-open"></i> Included</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research Team Section -->
+    <section class="card" id="team">
+      <h2><i class="fa-solid fa-users"></i> Research Team</h2>
+      <p class="section-desc">B.Tech in Data Science and Artificial Intelligence, Class of 2028.</p>
+
+      <div class="team-grid">
+        <div class="team-member-card">
+          <div class="member-avatar"><i class="fa-solid fa-user-astronaut"></i></div>
+          <h3>Rup Narayan Jha</h3>
+          <p class="roll-no">Roll No: 240150032</p>
+          <span class="member-role">Algorithm Implementation & Evaluation</span>
+          <p class="member-school">Mehta Family School of Data Science & AI, IIT Guwahati</p>
+        </div>
+
+        <div class="team-member-card">
+          <div class="member-avatar"><i class="fa-solid fa-user-gear"></i></div>
+          <h3>Jaypal Malviya</h3>
+          <p class="roll-no">Roll No: 240150013</p>
+          <span class="member-role">Data Preprocessing & Benchmarks</span>
+          <p class="member-school">Mehta Family School of Data Science & AI, IIT Guwahati</p>
+        </div>
+
+        <div class="team-member-card">
+          <div class="member-avatar"><i class="fa-solid fa-user-pen"></i></div>
+          <h3>Anuj Kumar</h3>
+          <p class="roll-no">Roll No: 240150003</p>
+          <span class="member-role">Extensions & Sensitivity Analysis</span>
+          <p class="member-school">Mehta Family School of Data Science & AI, IIT Guwahati</p>
+        </div>
+
+        <div class="team-member-card">
+          <div class="member-avatar"><i class="fa-solid fa-user-check"></i></div>
+          <h3>Ravi Kiran</h3>
+          <p class="roll-no">Roll No: 240150029</p>
+          <span class="member-role">Scalability & Report Writing</span>
+          <p class="member-school">Mehta Family School of Data Science & AI, IIT Guwahati</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p>&copy; 2026 MSTL Research Project &bull; B.Tech DSAI Undergraduate Research</p>
+      <p class="footer-school">Mehta Family School of Data Science and Artificial Intelligence &bull; Indian Institute of Technology Guwahati</p>
+      <p class="footer-sub">Based on Bandara, Hyndman, & Bergmeir (2021) &bull; Verified Numerical Reproduction</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

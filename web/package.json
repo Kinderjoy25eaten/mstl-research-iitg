@@ -1,0 +1,12 @@
+{
+  "name": "mstl-research-showcase",
+  "version": "1.0.0",
+  "description": "MSTL Multi-Seasonal Decomposition Research Showcase - IIT Guwahati",
+  "scripts": {
+    "start": "npx serve . -l 3000",
+    "deploy": "npx vercel --prod"
+  },
+  "keywords": ["mstl", "time-series", "iit-guwahati", "decomposition", "loess"],
+  "author": "Rup Narayan Jha, Jaypal Malviya, Anuj Kumar, Ravi Kiran",
+  "license": "MIT"
+}
