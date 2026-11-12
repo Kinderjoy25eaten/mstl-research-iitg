@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MSTL Research: Multi-Seasonal Trend Decomposition — IIT Guwahati</title>
-  
+
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <!-- Plotly.js for Interactive Charts -->
   <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
-  
+
   <!-- KaTeX for Math Equations -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body);"></script>
 
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- Top Navigation Bar -->
@@ -47,13 +52,14 @@
       <div class="badge-row">
         <span class="pill pill-primary"><i class="fa-solid fa-university"></i> IIT Guwahati</span>
         <span class="pill pill-info">Mehta Family School of Data Science & AI</span>
-        <span class="pill pill-success"><i class="fa-solid fa-check-double"></i> Exact Reconstruction (Error: 0.00)</span>
+        <span class="pill pill-success"><i class="fa-solid fa-check-double"></i> Exact Reconstruction (Error:
+          0.00)</span>
         <span class="pill pill-dark">B.Tech DSAI Project</span>
       </div>
-      
+
       <h1 class="hero-title">MSTL: A Seasonal-Trend Decomposition Algorithm for Multiple Seasonal Patterns</h1>
       <p class="hero-subtitle">Implementation, Empirical Reproduction, and Methodological Extensions</p>
-      
+
       <!-- Authors Card -->
       <div class="authors-card">
         <div class="authors-grid">
@@ -87,7 +93,8 @@
           </div>
         </div>
         <p class="school-footer">
-          <strong>Department:</strong> Mehta Family School of Data Science and Artificial Intelligence, Indian Institute of Technology Guwahati (IIT Guwahati), Assam, India
+          <strong>Department:</strong> Mehta Family School of Data Science and Artificial Intelligence, Indian Institute
+          of Technology Guwahati (IIT Guwahati), Assam, India
         </p>
       </div>
 
@@ -137,10 +144,20 @@
     <section class="card abstract-card">
       <h2><i class="fa-solid fa-quote-left"></i> Executive Abstract</h2>
       <p>
-        High-frequency time series frequently exhibit multiple simultaneous seasonal cycles, such as diurnal (24h) and circaseptan (168h) periodicities. Classical Seasonal-Trend decomposition using LOESS (STL) is restricted to a single seasonal period, leaving unmodelled periodic variations in the remainder component. In this research project, we study, implement, and extend the <strong>Multiple Seasonal-Trend decomposition using LOESS (MSTL)</strong> algorithm proposed by <em>Bandara, Hyndman, and Bergmeir (2021)</em>.
+        High-frequency time series frequently exhibit multiple simultaneous seasonal cycles, such as diurnal (24h) and
+        circaseptan (168h) periodicities. Classical Seasonal-Trend decomposition using LOESS (STL) is restricted to a
+        single seasonal period, leaving unmodelled periodic variations in the remainder component. In this research
+        project, we study, implement, and extend the <strong>Multiple Seasonal-Trend decomposition using LOESS
+          (MSTL)</strong> algorithm proposed by <em>Bandara, Hyndman, and Bergmeir (2021)</em>.
       </p>
       <p>
-        We contribute: <strong>(1)</strong> a faithful Python implementation of Algorithm 1, verified to achieve exact mathematical reconstruction ($\max |X - \hat{X}| = 0.00$); <strong>(2)</strong> an exact reproduction of the Victoria electricity-demand experiment using 3,601 hourly observations with daily ($m_1=24$) and weekly ($m_2=168$) seasonal cycles; <strong>(3)</strong> an objective component-wise accuracy benchmark on synthetic data with known ground-truth components; and <strong>(4)</strong> four original research extensions: seasonal window sensitivity, multi-seasonality ablation, outlier and missing data robustness, and computational scalability profiling.
+        We contribute: <strong>(1)</strong> a faithful Python implementation of Algorithm 1, verified to achieve exact
+        mathematical reconstruction ($\max |X - \hat{X}| = 0.00$); <strong>(2)</strong> an exact reproduction of the
+        Victoria electricity-demand experiment using 3,601 hourly observations with daily ($m_1=24$) and weekly
+        ($m_2=168$) seasonal cycles; <strong>(3)</strong> an objective component-wise accuracy benchmark on synthetic
+        data with known ground-truth components; and <strong>(4)</strong> four original research extensions: seasonal
+        window sensitivity, multi-seasonality ablation, outlier and missing data robustness, and computational
+        scalability profiling.
       </p>
     </section>
 
@@ -149,7 +166,8 @@
       <div class="card-header-row">
         <div>
           <h2><i class="fa-solid fa-chart-line"></i> Interactive Live Decomposition Explorer</h2>
-          <p class="section-desc">Interact with the real decomposition outputs. Toggle components, zoom in, and hover for hourly demand values.</p>
+          <p class="section-desc">Interact with the real decomposition outputs. Toggle components, zoom in, and hover
+            for hourly demand values.</p>
         </div>
         <div class="controls-group">
           <label><strong>Dataset:</strong></label>
@@ -162,20 +180,27 @@
 
       <!-- Component Toggles -->
       <div class="toggle-buttons-bar">
-        <button class="toggle-btn active" data-component="original"><i class="fa-solid fa-eye"></i> Original $X(t)$</button>
-        <button class="toggle-btn active" data-component="trend"><i class="fa-solid fa-wave-square"></i> Trend $T(t)$</button>
-        <button class="toggle-btn active" data-component="daily"><i class="fa-solid fa-sun"></i> Daily Seasonal $S_{24}(t)$</button>
-        <button class="toggle-btn active" data-component="weekly"><i class="fa-solid fa-calendar-week"></i> Weekly Seasonal $S_{168}(t)$</button>
-        <button class="toggle-btn active" data-component="remainder"><i class="fa-solid fa-braille"></i> Remainder $R(t)$</button>
+        <button class="toggle-btn active" data-component="original"><i class="fa-solid fa-eye"></i> Original
+          $X(t)$</button>
+        <button class="toggle-btn active" data-component="trend"><i class="fa-solid fa-wave-square"></i> Trend
+          $T(t)$</button>
+        <button class="toggle-btn active" data-component="daily"><i class="fa-solid fa-sun"></i> Daily Seasonal
+          $S_{24}(t)$</button>
+        <button class="toggle-btn active" data-component="weekly"><i class="fa-solid fa-calendar-week"></i> Weekly
+          Seasonal $S_{168}(t)$</button>
+        <button class="toggle-btn active" data-component="remainder"><i class="fa-solid fa-braille"></i> Remainder
+          $R(t)$</button>
       </div>
 
       <!-- Plotly Chart Container -->
       <div id="plotlyChart" class="chart-container">
-        <div class="loading-spinner"><i class="fa-solid fa-spinner fa-spin"></i> Loading interactive time-series data...</div>
+        <div class="loading-spinner"><i class="fa-solid fa-spinner fa-spin"></i> Loading interactive time-series data...
+        </div>
       </div>
 
       <div class="chart-footer-info">
-        <span><i class="fa-solid fa-circle-info"></i> <strong>Tip:</strong> Drag across the chart to zoom into specific weeks or peak demand events. Double click to reset view.</span>
+        <span><i class="fa-solid fa-circle-info"></i> <strong>Tip:</strong> Drag across the chart to zoom into specific
+          weeks or peak demand events. Double click to reset view.</span>
       </div>
     </section>
 
@@ -191,22 +216,26 @@
         <div class="step-card">
           <div class="step-num">1</div>
           <h3>Period Filtering</h3>
-          <p>Discards any candidate period $m_k$ where $2m_k \ge n$. A period must have at least 2 complete cycles to be identifiable.</p>
+          <p>Discards any candidate period $m_k$ where $2m_k \ge n$. A period must have at least 2 complete cycles to be
+            identifiable.</p>
         </div>
         <div class="step-card">
           <div class="step-num">2</div>
           <h3>Ascending Sorting</h3>
-          <p>Sorts periods strictly ascending: $m_1 < m_2 < \dots < m_K$. High-frequency diurnal cycles are resolved before slower circaseptan cycles.</p>
+          <p>Sorts periods strictly ascending: $m_1 < m_2 < \dots < m_K$. High-frequency diurnal cycles are resolved
+              before slower circaseptan cycles.</p>
         </div>
         <div class="step-card">
           <div class="step-num">3</div>
           <h3>Iterative Back-fitting</h3>
-          <p>Sequentially de-seasonalizes the series $\tilde{X}_k(t) = X(t) - \sum_{j \neq k} S_j(t)$ and fits standard STL at period $m_k$.</p>
+          <p>Sequentially de-seasonalizes the series $\tilde{X}_k(t) = X(t) - \sum_{j \neq k} S_j(t)$ and fits standard
+            STL at period $m_k$.</p>
         </div>
         <div class="step-card">
           <div class="step-num">4</div>
           <h3>Exact Remainder</h3>
-          <p>Calculates remainder algebraically $R(t) = X(t) - T(t) - \sum S_k(t)$, guaranteeing zero reconstruction drift.</p>
+          <p>Calculates remainder algebraically $R(t) = X(t) - T(t) - \sum S_k(t)$, guaranteeing zero reconstruction
+            drift.</p>
         </div>
       </div>
     </section>
@@ -214,7 +243,8 @@
     <!-- Empirical Benchmarks Section -->
     <section class="card" id="benchmarks">
       <h2><i class="fa-solid fa-stopwatch"></i> Empirical Benchmarks & Comparisons</h2>
-      <p class="section-desc">Evaluated on the Victoria Electricity Demand dataset (3,601 hourly observations, Jan 1 to May 31, 2014).</p>
+      <p class="section-desc">Evaluated on the Victoria Electricity Demand dataset (3,601 hourly observations, Jan 1 to
+        May 31, 2014).</p>
 
       <div class="table-responsive">
         <table class="data-table">
@@ -269,13 +299,16 @@
           </tbody>
         </table>
       </div>
-      <p class="table-note"><em>Key Insight:</em> Custom MSTL achieves identical numerical decomposition to Statsmodels MSTL while executing <strong>4.5&times; faster</strong>, and is over <strong>120&times; faster</strong> than state-space TBATS.</p>
+      <p class="table-note"><em>Key Insight:</em> Custom MSTL achieves identical numerical decomposition to Statsmodels
+        MSTL while executing <strong>4.5&times; faster</strong>, and is over <strong>120&times; faster</strong> than
+        state-space TBATS.</p>
     </section>
 
     <!-- Synthetic Ground-Truth Evaluation -->
     <section class="card" id="synthetic">
       <h2><i class="fa-solid fa-bullseye"></i> Controlled Synthetic Ground-Truth Benchmark</h2>
-      <p class="section-desc">Because empirical time series lack known ground-truth components, we simulated an analytical 70-day series ($n = 1{,}680$ hours, seed=42) to objectively measure component recovery error.</p>
+      <p class="section-desc">Because empirical time series lack known ground-truth components, we simulated an
+        analytical 70-day series ($n = 1{,}680$ hours, seed=42) to objectively measure component recovery error.</p>
 
       <div class="synthetic-grid">
         <div class="table-responsive">
@@ -327,24 +360,29 @@
     <!-- Four Research Extensions -->
     <section class="card" id="extensions">
       <h2><i class="fa-solid fa-flask-vial"></i> Four Original Research Extensions</h2>
-      <p class="section-desc">Original methodological extensions formulated and evaluated by our research team beyond the assigned paper.</p>
+      <p class="section-desc">Original methodological extensions formulated and evaluated by our research team beyond
+        the assigned paper.</p>
 
       <div class="extensions-cards-grid">
         <!-- Ext 1 -->
         <div class="ext-card">
           <div class="ext-badge">Extension 1</div>
           <h3>Seasonal Window & Iteration Sensitivity</h3>
-          <p>Evaluated odd LOESS windows $n_s \in \{7, 11, 15, 21, 25\}$ across outer iterations $I \in \{1, 2, 3\}$. Proved that mathematical reconstruction remains exact ($< 10^{-13}$) regardless of window choice, while runtime scales strictly linearly with iterations.</p>
-          <div class="ext-stat">
-            <span>Runtime Grid:</span> <strong>0.10 s ($I=1$) &rarr; 0.31 s ($I=3$)</strong>
-          </div>
+          <p>Evaluated odd LOESS windows $n_s \in \{7, 11, 15, 21, 25\}$ across outer iterations $I \in \{1, 2, 3\}$.
+            Proved that mathematical reconstruction remains exact ($< 10^{-13}$) regardless of window choice, while
+              runtime scales strictly linearly with iterations.</p>
+              <div class="ext-stat">
+                <span>Runtime Grid:</span> <strong>0.10 s ($I=1$) &rarr; 0.31 s ($I=3$)</strong>
+              </div>
         </div>
 
         <!-- Ext 2 -->
         <div class="ext-card">
           <div class="ext-badge">Extension 2</div>
           <h3>Multi-Seasonality Ablation Study</h3>
-          <p>Compared Daily-only ($m=24$), Weekly-only ($m=168$), and Dual ($m=[24, 168]$). Demonstrated that modeling weekly seasonality alone inflates remainder standard deviation to $861.03$ MWh, while dual MSTL correctly isolates both periodicities ($809.77$ MWh).</p>
+          <p>Compared Daily-only ($m=24$), Weekly-only ($m=168$), and Dual ($m=[24, 168]$). Demonstrated that modeling
+            weekly seasonality alone inflates remainder standard deviation to $861.03$ MWh, while dual MSTL correctly
+            isolates both periodicities ($809.77$ MWh).</p>
           <div class="ext-stat">
             <span>Residual Std:</span> <strong>861.03 MWh &rarr; 809.77 MWh</strong>
           </div>
@@ -354,7 +392,9 @@
         <div class="ext-card">
           <div class="ext-badge">Extension 3</div>
           <h3>Outlier & Missing Data Robustness</h3>
-          <p>Discovered a crucial asymmetry: linear interpolation withstands up to 10% missing data with only 0.89% trend distortion, whereas 10% artificial outlier spikes inflict 33.56% trend degradation, proving the necessity of robust outlier preprocessing.</p>
+          <p>Discovered a crucial asymmetry: linear interpolation withstands up to 10% missing data with only 0.89%
+            trend distortion, whereas 10% artificial outlier spikes inflict 33.56% trend degradation, proving the
+            necessity of robust outlier preprocessing.</p>
           <div class="ext-stat">
             <span>Missing Degradation:</span> <strong>&le; 0.89% (Highly Resilient)</strong>
           </div>
@@ -364,7 +404,9 @@
         <div class="ext-card">
           <div class="ext-badge">Extension 4</div>
           <h3>Computational Scalability Profiling</h3>
-          <p>Empirically measured runtime and memory consumption across dataset lengths from 168 hours (1 week) to 3,601 hours (5 months). Proved strict linear $O(n)$ scaling ($R^2 > 0.998$) with peak memory consumption staying under 0.75 MB throughout.</p>
+          <p>Empirically measured runtime and memory consumption across dataset lengths from 168 hours (1 week) to 3,601
+            hours (5 months). Proved strict linear $O(n)$ scaling ($R^2 > 0.998$) with peak memory consumption staying
+            under 0.75 MB throughout.</p>
           <div class="ext-stat">
             <span>Runtime Scaling:</span> <strong>$O(n)$ Linear (3 ms &rarr; 234 ms)</strong>
           </div>
@@ -383,9 +425,10 @@
           <div class="dl-details">
             <h4>Final ICML Research Paper</h4>
             <p>Official 6-page academic paper formatted in the ICML 2024 conference template.</p>
-            <span class="file-meta">PDF &bull; 6 Pages &bull; 2.8 MB</span>
+            <span class="file-meta">PDF &bull; 6 Pages</span>
           </div>
-          <a href="docs/final_report.pdf" download class="btn btn-primary btn-sm"><i class="fa-solid fa-download"></i> Download</a>
+          <a href="docs/final_report.pdf" download class="btn btn-primary btn-sm"><i class="fa-solid fa-download"></i>
+            Download</a>
         </div>
 
         <div class="download-item">
@@ -393,9 +436,10 @@
           <div class="dl-details">
             <h4>Supplementary Research Material</h4>
             <p>Extended mathematical proofs, full experimental logs, parameter tables, and reproducibility guide.</p>
-            <span class="file-meta">PDF &bull; 3 Pages &bull; 0.9 MB</span>
+            <span class="file-meta">Zip file &bull; 1 PDF & 1 Readme</span>
           </div>
-          <a href="docs/Supplementary_Material.pdf" download class="btn btn-secondary btn-sm"><i class="fa-solid fa-download"></i> Download</a>
+          <a href="docs/supplementary.zip" download class="btn btn-secondary btn-sm"><i
+              class="fa-solid fa-download"></i> Download</a>
         </div>
 
         <div class="download-item">
@@ -436,7 +480,7 @@
           <div class="member-avatar"><i class="fa-solid fa-user-pen"></i></div>
           <h3>Anuj Kumar</h3>
           <p class="roll-no">Roll No: 240150003</p>
-          <span class="member-role">Extensions & Sensitivity Analysis</span>
+          <span class="member-role">Extensions(1,2) & Sensitivity Analysis</span>
           <p class="member-school">Mehta Family School of Data Science & AI, IIT Guwahati</p>
         </div>
 
@@ -444,7 +488,7 @@
           <div class="member-avatar"><i class="fa-solid fa-user-check"></i></div>
           <h3>Ravi Kiran</h3>
           <p class="roll-no">Roll No: 240150029</p>
-          <span class="member-role">Scalability & Report Writing</span>
+          <span class="member-role">Extensions(3,4),Scalability & Report Writing</span>
           <p class="member-school">Mehta Family School of Data Science & AI, IIT Guwahati</p>
         </div>
       </div>
@@ -456,12 +500,17 @@
   <footer class="footer">
     <div class="footer-container">
       <p>&copy; 2026 MSTL Research Project &bull; B.Tech DSAI Undergraduate Research</p>
-      <p class="footer-school">Mehta Family School of Data Science and Artificial Intelligence &bull; Indian Institute of Technology Guwahati</p>
+      <p class="footer-school">Mehta Family School of Data Science and Artificial Intelligence &bull; Indian Institute
+        of Technology Guwahati</p>
       <p class="footer-sub">Based on Bandara, Hyndman, & Bergmeir (2021) &bull; Verified Numerical Reproduction</p>
+      <p>you can get implementation of this on github ::
+        <a href="https://github.com/Kinderjoy25eaten/mstl-research-iitg/">click here</a>
+      </p>
     </div>
   </footer>
 
   <script src="app.js"></script>
 </body>
+
 </html>
 
