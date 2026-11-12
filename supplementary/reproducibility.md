@@ -1,82 +1,82 @@
-# Reproducibility Guide: Step-by-Step Instructions
+# Reproducibility Guide
 
-**Project**: MSTL Research Implementation and Extensions  
-**Affiliation**: Mehta Family School of Data Science and Artificial Intelligence, IIT Guwahati  
-**Program**: B.Tech in Data Science and Artificial Intelligence  
-**Authors**:
-- Rup Narayan Jha (240150032)
-- Jaypal Malviya (240150013)
-- Anuj Kumar (240150003)
-- Ravi Kiran (240150029)
+**Project:** MSTL Implementation and Extensions  
+**Affiliation:** Mehta Family School of Data Science and Artificial Intelligence, IIT Guwahati  
+**Program:** B.Tech in Data Science and Artificial Intelligence  
+**Authors:** Rup Narayan Jha (240150032), Jaypal Malviya (240150013), Anuj Kumar (240150003), Ravi Kiran (240150029)
 
 ---
 
-## 1. Prerequisites and Environment Setup
+## 1. Setup
 
-The codebase is written in standard Python (3.9+) and is fully compatible with Windows, macOS, Linux, and Google Colab environments.
+The code is plain Python and runs on Windows, macOS, Linux, and Google Colab. The reported results were produced with Python 3.14.3 and the package versions listed in `experiment_details.md`. Other versions may work but could change timings slightly.
 
-### 1.1 Clone / Access Codebase
-Ensure your current working directory is set to the project root:
+### 1.1 Get the code
+From the project root:
 ```bash
 cd MSTL_Project
 ```
 
-### 1.2 Install Required Dependencies
-Install the required packages using `pip`:
+### 1.2 Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
-Key packages installed:
+The main packages are:
+
 - `numpy`, `pandas`, `scipy`
-- `statsmodels` (provides STL and library MSTL)
-- `tbats` (provides state-space TBATS benchmark)
+- `statsmodels` (STL and the library MSTL)
+- `tbats` (the state-space benchmark)
 - `matplotlib`, `seaborn`
 - `scikit-learn`
 
 ---
 
-## 2. Re-executing All Experiments from Scratch
+## 2. Re-running All Experiments
 
-To re-run the entire research pipeline end-to-end (data loading, custom MSTL, library comparisons, synthetic evaluations, all 4 extensions, and plot/table generation):
+One command runs the whole pipeline: loading the data, our MSTL, the library comparisons, the synthetic test, all four extensions, and the figures and tables.
 
 ```bash
 python src/run_all_experiments.py
 ```
 
-### Expected Output Logs:
-- Data preprocessed to `data/vic_elec_hourly.csv`
-- Exactly **3,601 hourly observations** extracted
-- 15 publication figures generated under `results/figures/`
-- 6 CSV tables generated under `results/tables/`
-- Full experiment log saved to `results/experiment_logs/experiment_log.json`
+Two optional follow-up commands:
+```bash
+python src/create_notebooks.py   # generate the notebooks
+python src/compile_pdfs.py       # compile the documentation PDFs
+```
+
+### What to expect
+- The processed data is written to `data/vic_elec_hourly.csv` and has exactly **3,601 hourly rows**.
+- 15 figures appear in `results/figures/`.
+- 6 CSV tables appear in `results/tables/`.
+- A full log is saved to `results/experiment_logs/experiment_log.json`.
 
 ---
 
-## 3. Interactive Notebook Walkthrough
+## 3. Notebooks
 
-To inspect and interactively execute each stage:
-
+To step through the stages interactively:
 ```bash
 jupyter lab notebooks/
 ```
+Run them in this order:
 
-Execute notebooks sequentially:
-1. `01_data_preprocessing.ipynb`: Raw dataset inspection and hourly aggregation.
-2. `02_custom_mstl_implementation.ipynb`: Step-by-step custom MSTL decomposition and residual checks.
-3. `03_library_and_benchmark_comparison.ipynb`: Statsmodels MSTL, STL, and TBATS comparisons.
-4. `04_synthetic_data_experiments.ipynb`: Synthetic signal generation and ground-truth RMSE validation.
-5. `05_extensions_and_ablation.ipynb`: Seasonal window sensitivity and seasonality ablation.
-6. `06_robustness_and_scalability.ipynb`: Outlier/missing robustness and computational scaling.
+1. `01_data_preprocessing.ipynb`: inspect the raw data and aggregate to hourly values.
+2. `02_custom_mstl_implementation.ipynb`: run our MSTL step by step and check residuals.
+3. `03_library_and_benchmark_comparison.ipynb`: compare with `statsmodels` MSTL, STL, and TBATS.
+4. `04_synthetic_data_experiments.ipynb`: build the synthetic series and compute error against ground truth.
+5. `05_extensions_and_ablation.ipynb`: window sensitivity and seasonal ablation.
+6. `06_robustness_and_scalability.ipynb`: outlier and missing-data tests, and scaling.
 
 ---
 
-## 4. Verification Checklist
+## 4. Checklist
 
-Before concluding reproduction:
-- [x] Input series length is exactly 3,601 observations (2014-01-01 to 2014-05-31).
-- [x] Custom MSTL reconstruction max error is near zero ($< 10^{-11}$).
-- [x] Synthetic trend RMSE is $< 2.0$.
-- [x] All 15 figures exist under `results/figures/`.
-- [x] All 6 tables exist under `results/tables/`.
-- [x] TBATS benchmark completes and reports valid AIC and execution time.
+Before treating a reproduction as complete, confirm that:
 
+- [x] the input has exactly 3,601 observations (2014-01-01 to 2014-05-31);
+- [x] the reconstruction error of our MSTL is essentially zero (below $10^{-11}$);
+- [x] the synthetic trend RMSE is below 2.0;
+- [x] all 15 figures exist in `results/figures/`;
+- [x] all 6 tables exist in `results/tables/`;
+- [x] the TBATS benchmark finishes and reports a valid AIC and run time.
