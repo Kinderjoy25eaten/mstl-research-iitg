@@ -210,8 +210,3 @@ The website is a visual companion to this repository and is not needed to reprod
 
 This project was created for educational purposes as part of a B.Tech research course.
 ---
-
-## License
-
-This project is for educational purposes as part of a B.Tech research course.
-
