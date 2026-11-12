@@ -64,7 +64,6 @@ MSTL_Project/
 │   └── experiment_logs/           # JSON logs
 ├── report/
 │   ├── final_report.tex           # ICML-style LaTeX report
-│   ├── references.bib             # BibTeX references
 │   └── final_report.pdf           # compiled report
 ├── supplementary/
 │   ├── Supplementary_Material.md
