@@ -168,7 +168,7 @@ X(t) = S1(t) + S2(t) + ... + SK(t) + T(t) + R(t)
 
 We also built a small website that lets you explore the decomposition and our results:
 
-**https://brisk-piano-t9ji2v4.tmp.now/**
+**https://mstl-research-iitg-web.vercel.app/**
 
 On it you can:
 - see a series split into trend, daily cycle, weekly cycle, and remainder;
